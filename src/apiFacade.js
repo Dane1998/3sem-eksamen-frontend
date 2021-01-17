@@ -24,7 +24,6 @@ function apiFacade() {
     return localStorage.getItem("user");
   };
   const loggedIn = () => {
-    console.log("chcecking if logged in in facade");
     const loggedIn = getToken() != null;
     return loggedIn;
   };
@@ -51,13 +50,7 @@ function apiFacade() {
     return fetch(URL + url2, options).then(handleHttpErrors);
   };
 
-  const fetchAnyGET = (URL) => {
-    const options = makeOptions("GET", false);
-    return fetch(URL, options).then(handleHttpErrors);
-  };
-  const fetchNoOptions = (URL) => {
-    return fetch(URL).then(handleHttpErrors);
-  };
+  
 
   const makeOptions = (method, addToken, body) => {
     var opts = {
@@ -84,8 +77,6 @@ function apiFacade() {
     logout,
     fetchData,
     registerUser,
-    fetchAnyGET,
-    fetchNoOptions,
     getActiveUser,
   };
 }

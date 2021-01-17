@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -10,13 +10,10 @@ import {
 
 import facade from "./apiFacade";
 import LogIn from "./components/LogIn";
-import LoggedIn from "./components/LoggedIn";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Register from "./components/Register";
-import Account from "./components/Account";
-import Orders from "./components/Orders";
-import Users from "./components/Users";
+
 
 
 function App() {
@@ -34,14 +31,13 @@ function App() {
   };
 
 
-  const login = (user, pass, callback) => {
+  const login = (user, pass) => {
     facade
       .login(user, pass)
       .then(() => {
         user !== "admin" ? setLoggedIn(true) : setAdmin(true);
         setActiveUser(user);
       })
-      .then(callback)
       .catch((err) => {
         if (err.status) {
           err.fullError.then((e) => setErrMsg(e.message));
@@ -52,7 +48,6 @@ function App() {
       });
     setErrMsg("");
   };
-  console.log("Admin status: " + admin + "  loggedIn status: " + loggedIn);
   return (
     <Router>
       <div className="App">
@@ -81,23 +76,9 @@ function App() {
           ) : (
             ""
           )}
-          {loggedIn ? (
+           {loggedIn ? (
             <Route exact path="/account">
               <Account />
-            </Route>
-          ) : (
-            ""
-          )}
-          {admin ? (
-            <Route exact path="/orders">
-              <Orders />
-            </Route>
-          ) : (
-            ""
-          )}
-          {admin ? (
-            <Route exact path="/users">
-              <Users />
             </Route>
           ) : (
             ""
@@ -112,7 +93,6 @@ function App() {
 }
 function NoMatch() {
   let location = useLocation();
-
   return (
     <div>
       <h3>

@@ -1,18 +1,13 @@
-import { useHistory } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import { Row, Container, Col } from "react-bootstrap";
+import React, { useState } from "react";
 
-export default function LogIn({ login, init, errorMsg }) {
+
+export default function LogIn({ login, init }) {
   const [loginCredentials, setLoginCredentials] = useState(init);
 
-  const history = useHistory();
 
   const performLogin = (evt) => {
     evt.preventDefault();
     login(loginCredentials.username, loginCredentials.password, () => {
-      loginCredentials.username !== "admin"
-        ? history.push("/account")
-        : history.push("/statistics");
     });
   };
   const onChange = (evt) => {

@@ -36,24 +36,6 @@ export default function Header({ loggedIn, admin, logout, activeUser }) {
         ) : (
           ""
         )}
-        {admin ? (
-          <li>
-            <NavLink activeClassName="active" to="/orders">
-              Orders
-            </NavLink>
-          </li>
-        ) : (
-          ""
-        )}
-        {admin ? (
-          <li>
-            <NavLink activeClassName="active" to="/users">
-              Users
-            </NavLink>
-          </li>
-        ) : (
-          ""
-        )}
         {!admin && !loggedIn ? (
           <li>
             <NavLink activeClassName="active" to="/login">
