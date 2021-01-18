@@ -29,8 +29,26 @@ export default function Header({ loggedIn, admin, logout, activeUser }) {
         )}
         {loggedIn && !admin ? (
           <li>
-            <NavLink activeClassName="active" to="/account">
-              Account
+            <NavLink activeClassName="active" to="/contact">
+              Contact
+            </NavLink>
+          </li>
+        ) : (
+          ""
+        )}
+        {loggedIn && !admin ? (
+          <li>
+            <NavLink activeClassName="active" to="/viewcontact">
+              ViewContact
+            </NavLink>
+          </li>
+        ) : (
+          ""
+        )}
+        {loggedIn && !admin ? (
+          <li>
+            <NavLink activeClassName="active" to="/contactbyid">
+              Search Contact
             </NavLink>
           </li>
         ) : (

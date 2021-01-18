@@ -3,25 +3,12 @@ import links from "./settings";
 const URL = links.server;
 
 function apiFacade() {
- 
-  const registerUser = (user) => {
-    const options = makeOptions("POST", false, {
-      ...user,
-    });
-    return fetch(URL + "/api/user", options).then(handleHttpErrors);
-  };
- 
+
   const setToken = (token) => {
     localStorage.setItem("jwtToken", token);
   };
-  const setActiveUser = (user) => {
-    localStorage.setItem("user", user);
-  };
   const getToken = () => {
     return localStorage.getItem("jwtToken");
-  };
-  const getActiveUser = () => {
-    return localStorage.getItem("user");
   };
   const loggedIn = () => {
     const loggedIn = getToken() != null;
@@ -29,7 +16,12 @@ function apiFacade() {
   };
   const logout = () => {
     localStorage.removeItem("jwtToken");
-    localStorage.removeItem("user");
+  };
+  const setActiveUser = (user) => {
+    localStorage.setItem("user", user);
+  };
+  const getActiveUser = () => {
+    return localStorage.getItem("user");
   };
 
   const login = (user, password) => {
@@ -45,11 +37,42 @@ function apiFacade() {
       });
   };
 
-  const fetchData = (url2) => {
-    const options = makeOptions("GET", true); //True add's the token
-    return fetch(URL + url2, options).then(handleHttpErrors);
-  };
 
+  const registerUser = (user) => {
+    const options = makeOptions("POST", false, {
+      ...user,
+    });
+    return fetch(URL + "/api/info", options).then(handleHttpErrors);
+  };
+ 
+ const fetchContacts = (e) => {
+   const options = makeOptions("GET")
+   return fetch (URL + links.allContacts, options)
+   .then(handleHttpErrors)
+   .then((data) => {
+      e(data)
+   })
+ }
+
+  const addContact = (contact) => {
+    const options = makeOptions("POST", true, contact);
+    return fetch(URL + links.newContact, options).then(handleHttpErrors);
+  }
+
+  const searchContact = (id) => {
+    const options = makeOptions("GET", true);
+    return fetch(URL + links.searchContact + id, options).then(handleHttpErrors);
+  }
+
+  const deleteContact = (id) => {
+    const options = makeOptions("DELETE", true);
+    return fetch(URL + links.deleteContact + id, options).then(handleHttpErrors);
+  }
+
+  const updateContact = (id) => {
+    const options = makeOptions("PUT", true);
+    return fetch(URL + links.updateContact + id, options).then(handleHttpErrors);
+  }
   
 
   const makeOptions = (method, addToken, body) => {
@@ -75,9 +98,15 @@ function apiFacade() {
     loggedIn,
     login,
     logout,
-    fetchData,
     registerUser,
     getActiveUser,
+    addContact,
+    fetchContacts,
+    searchContact,
+    deleteContact,
+    updateContact,
+
+
   };
 }
 const facade = apiFacade();

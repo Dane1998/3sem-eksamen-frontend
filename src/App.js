@@ -13,6 +13,9 @@ import LogIn from "./components/LogIn";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Register from "./components/Register";
+import Contact from "./components/Contact"
+import ViewContact from "./components/ViewContact"
+import ContactSearch from "./components/ContactById"
 
 
 
@@ -77,8 +80,22 @@ function App() {
             ""
           )}
            {loggedIn ? (
-            <Route exact path="/account">
-              <Account />
+            <Route exact path="/contact">
+              <Contact />
+            </Route>
+          ) : (
+            ""
+          )}
+          {loggedIn ? (
+            <Route exact path="/viewcontact">
+              <ViewContact />
+            </Route>
+          ) : (
+            ""
+          )}
+          {loggedIn ? (
+            <Route exact path="/contactbyid">
+              <ContactSearch />
             </Route>
           ) : (
             ""
