@@ -5,7 +5,7 @@ export default function ContactSearch() {
     const [searchId, setSearchId] = useState("")
     const [deleteId, setDeleteId] = useState("")
     const [showContactById, setShowContactById] = useState([])
-    const [isLoading, setIsLoading] = useState(true);
+
 
 
     const onChangeSearch = (e) => {
@@ -30,6 +30,8 @@ export default function ContactSearch() {
         setDeleteId(e.target.value)
     }
 
+   
+
     const deleteContact = (e) => {
         e.preventDefault();
         facade.deleteContact(deleteId);
@@ -44,9 +46,9 @@ export default function ContactSearch() {
                     type="text"
                     placeholder="Search"
                     onChange={onChangeSearch} />
-                    
+                    <input type="submit" /> 
 
-                <ul className="table">
+                <ul >
                     <p>Id: {showContactById.id}</p>
                     <p>Name: {showContactById.name}</p>
                     <p>Email: {showContactById.email}</p>

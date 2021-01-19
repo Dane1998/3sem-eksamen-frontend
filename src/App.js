@@ -10,7 +10,6 @@ import {
 
 import facade from "./apiFacade";
 import LogIn from "./components/LogIn";
-import Home from "./components/Home";
 import Header from "./components/Header";
 import Register from "./components/Register";
 import Contact from "./components/Contact"
@@ -60,11 +59,7 @@ function App() {
           logout={logout}
           activeUser={activeUser}
         />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          
+        <Switch>       
           {!loggedIn ? (
             <Route exact path="/register">
               <Register facade={facade} init={init} />

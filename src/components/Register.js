@@ -1,4 +1,4 @@
-import { useEffect, useState, Button, Form } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function Register({ facade, init }) {

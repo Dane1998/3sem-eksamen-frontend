@@ -9,15 +9,7 @@ export default function Header({ loggedIn, admin, logout, activeUser }) {
   }
   return (
     <ul className="header">
-      <div>{!admin ? (
-          <li>
-            <NavLink exact activeClassName="active" to="/">
-              Home
-            </NavLink>
-          </li>
-        ) : (
-          ""
-        )}
+      <div>
         {!admin && !loggedIn ? (
           <li>
             <NavLink activeClassName="active" to="/register">

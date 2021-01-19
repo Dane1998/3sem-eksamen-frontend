@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import facade from "../apiFacade";
 
 export default function ViewContact() {
-    const [showContact, setShowContact] = useState([])
     const [array, setArray] = useState([]);
 
     useEffect(() => {

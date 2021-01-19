@@ -30,7 +30,7 @@ export default function AddContact() {
         onChange={setContactData("name")} />
       <br />
       <input
-        type="text"
+        type="email"
         id="email"
         placeholder="email"
         onChange={setContactData("email")}/>
