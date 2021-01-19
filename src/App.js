@@ -68,7 +68,7 @@ function App() {
             ""
           )}
           {!loggedIn ? (
-            <Route exact path="/login">
+            <Route exact path="/contact">
               <LogIn login={login} init={init} errorMsg={errorMsg} />
             </Route>
           ) : (
